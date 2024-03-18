@@ -9,8 +9,16 @@ const port = 3001 || 5000;
 
 app.use(express.json());
 
+// إضافة الرأس Access-Control-Allow-Origin للسماح بالوصول من النطاق المحدد
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://blog-clint.vercel.app");
+  next();
+});
+
 mongoose
-  .connect("mongodb+srv://steve:8AHKISlpREHyW9HI@firstcluster.d4jodqk.mongodb.net/blogs?retryWrites=true&w=majority&appName=firstCluster")
+  .connect(
+    "mongodb+srv://steve:8AHKISlpREHyW9HI@firstcluster.d4jodqk.mongodb.net/blogs?retryWrites=true&w=majority&appName=firstCluster"
+  )
   .then(() => {
     app.listen(port, () => {
       console.log("connection to mongodb on port ", port);
@@ -106,9 +114,9 @@ app.post("/addcomment", async (req, res) => {
     const { postId, user, comment } = req.body;
     const data = await post.findOne({ _id: postId });
     const newComment = { user, comment };
-    
+
     data.comments.push(newComment);
-    data.save()
+    data.save();
     res.json(data);
   } catch (err) {
     res.status(500).send("err get user " + err);
