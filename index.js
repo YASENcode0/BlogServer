@@ -10,7 +10,7 @@ const port = 3001 || 5000;
 
 app.use(express.json());
 app.use(cors());
- 
+
 // إضافة الرأس Access-Control-Allow-Origin للسماح بالوصول من النطاق المحدد
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "https://blog-clint.vercel.app");
