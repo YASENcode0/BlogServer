@@ -17,6 +17,12 @@ app.use(cors());
 //   next();
 // });
 
+// إضافة الرأس Access-Control-Allow-Origin للسماح بالوصول من النطاق المحدد
+/*app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://blog-clint.vercel.app");
+  next();
+});
+*/
 mongoose
   .connect(
     "mongodb+srv://steve:8AHKISlpREHyW9HI@firstcluster.d4jodqk.mongodb.net/blogs?retryWrites=true&w=majority&appName=firstCluster"
